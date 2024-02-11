@@ -4,8 +4,8 @@ const app = express()
 const port = 5000
 const url = 'mongodb://127.0.0.1:27017/Todo'
 const cors = require('cors')
-const userRoutes = require('./routes/userRoutes')
-const todoRoutes = require('./routes/todoRoutes')
+const userRoutes = require('./src/routes/userRoutes')
+const todoRoutes = require('./src/routes/todoRoutes')
 
 //middlewares
 //encode url
