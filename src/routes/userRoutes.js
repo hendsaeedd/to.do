@@ -1,73 +1,26 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/user')
-
+const {
+  registerUser,
+  loginUser,
+  getAllUsers,
+  deleteUser,
+  updateUser,
+} = require('../controllers/user')
 
 //register user
-router.post('/register', async (req, res) => {
-  try {
-    const { username, password, firstname } = req.body
-
-    const newUser = await User.create({
-      username,
-      password,
-      firstName: firstname,
-    })
-
-    res.json({ message: 'User was registered successfully', newUser })
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-})
-
-
+router.post('/register', registerUser)
 
 //login user
-router.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const loginUser = await User({
-      username,
-      password,
-    });
-
-    res.json({ message: 'User was logged in successfully', loginUser });
-  } catch (error) {
-    res.status(401).json( error.message );
-  }
-})
+router.post('/login', loginUser)
 
 //get all users firstname
-router.get('/', async (req, res) => {
-  try {
-    const users = await User.find({}, 'firstName');
-    res.json(users);
-  } catch (error) {
-    res.json({ error: error.message });
-  }
-});
-
+router.get('/', getAllUsers)
 
 //delete user
-router.delete('/:name', async (req, res) => {
-  try {
-    const deletedUser = await User.deleteOne({ username: req.params.name });
-    res.json({ message: 'User deleted successfully', deletedUser });
-  } catch (error) {
-    res.json({ error: error.message });
-  }
-});
-
+router.delete('/:name', deleteUser)
 
 //update user
-router.patch('/:name', async (req, res) => {
-  try {
-    const user = await User.updateOne({username: req.params.name}, req.body)
-    res.json(user)
-  } catch (error) {
-    res.json( error.message );
-  }
-})
-
+router.patch('/:name', updateUser)
 
 module.exports = router
