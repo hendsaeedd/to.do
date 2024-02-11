@@ -21,19 +21,18 @@ app.use('/todos', todoRoutes)
 app.use(cors())
 
 //connect to mongodb
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB')
   })
-  .catch(error => {
-    console.error('Error connecting to MongoDB:', error);
-  });
-
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error)
+  })
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
