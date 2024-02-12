@@ -60,7 +60,7 @@ const deleteTodo = async (req, res) => {
 
     res.json({ message: 'Todo deleted successfully' })
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    res.status(400).json({ error: error.message })
   }
 }
 
