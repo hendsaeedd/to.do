@@ -16,7 +16,7 @@ const createTodo = async (req, res) => {
       tags,
     })
 
-    res.json(newTodo)
+    res.json({ message: 'Todo created successfully', newTodo })
   } catch (error) {
     res.json({ error: error.message })
   }
