@@ -1,8 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config()
 const app = express()
-const port = 5000
-const url = 'mongodb://127.0.0.1:27017/Todo'
+const port = process.env.PORT || 5000
+const url = process.env.MONGODB_URL
 const cors = require('cors')
 const userRoutes = require('./src/routes/userRoutes')
 const todoRoutes = require('./src/routes/todoRoutes')
